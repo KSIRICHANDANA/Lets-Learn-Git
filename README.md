@@ -25,7 +25,22 @@ Re-identification attack simulation and validating that noise scale >= impact of
 
 ## Data Overview
 
-![alt text](<Screenshot 2025-12-08 200759.png>)
+- Hospital_code - Unique hospital identifier
+- Hospital_type_code - Type of hospital
+- City_Code_Hospital - City code of the hospital
+- Hospital_region_code - Region code of the hospital
+- Department - Department of admission
+- Ward_Type - Type of ward
+- Ward_Facility_Code - Ward facility code
+- Visitors with Patient - Number of visitors attending the patient
+- Admission_Deposit - Deposit amount paid at admission
+- random_age - Randomized numeric age generated from original age ranges
+- height_cm - Synthetic height calculated from age
+- weight_kg - Synthetic weight calculated from age
+- BMI - Body Mass Index computed from height and weight
+- admission_level - Label-encoded Type of Admission
+- severity_level - Label-encoded Severity of Illness
+- random_stay - Randomized numeric stay duration generated from stay ranges
 
 ## Methodology & Key Findings
 
@@ -66,7 +81,7 @@ This attack focused on whether altering the presence of a single patient would v
 - Query 4 (Minimum Deposit per Hospital):
 In this case, the attacker attempted to exploit how much one patient could shift a hospital’s minimum deposit value. Even though this metric can be more sensitive, the DP noise was still scaled adequately to prevent the attacker from learning whether any individual record influenced the result.
 
-## Steps to Run the Code:
+## Steps to Run the Code
 
 - Prerequisites - You will need the following libraries installed: pip install pandas numpy matplotlib seaborn
 - Download the Jupyter Notebook
