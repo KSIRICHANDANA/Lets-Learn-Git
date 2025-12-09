@@ -52,10 +52,19 @@ It produced lower RMSE, lower error, and higher accuracy for most queries.
 Gaussian performed poorly on continuous queries with small sensitivity.
 
 ### Privacy Validation (Attack Simulation):
-- Query 1 - Confirmed strong privacy protection: the attacker’s maximum possible influence was only 0.0027, while the Laplace noise scale was 0.0160, ensuring successful anonymization.
-- Query 2 - Confirmed strong DP protection: the attacker’s maximum influence was only 0.00027, while the Laplace noise scale remained 0.0110, ensuring that the target patient’s presence stayed fully hidden.
-- Query 3 - Confirmed strong privacy protection: the attacker’s maximum possible influence was only 0.0000031403, while the Laplace noise scale was 0.0000104678, ensuring successful anonymization.
-- Query 4 - Confirmed strong DP protection: the attacker’s maximum possible influence was only 2.51378651, while the Laplace noise scale was 6.28446628, ensuring successful anonymization.
+Across all four queries, we simulated re‑identification attacks where an adversary tries to determine whether a specific patient is included in the dataset. In each case, the attacker attempts to do this by measuring how much the output of a query (such as an average, a fraction, or a minimum value) would change if the target patient’s data were removed.
+
+- Query 1 (Average Stay Duration):
+The attacker tried to detect whether adding or removing one extreme patient would noticeably shift the average stay duration. However, the differential privacy noise was large enough that the attacker’s influence was fully hidden.
+
+- Query 2 (BMI by Age‑Group):
+The attack attempted to identify whether an unusually high‑BMI patient belonged to a specific age group by comparing the average with and without that patient. The DP noise again dominated the potential influence, preventing any meaningful signal from leaking.
+
+- Query 3 (Fractional Count):
+This attack focused on whether altering the presence of a single patient would visibly change the fraction of patients with a particular attribute. Because this query’s sensitivity is extremely small, the DP mechanism easily masked the attacker’s maximum possible impact, ensuring strong privacy protection.
+
+- Query 4 (Minimum Deposit per Hospital):
+In this case, the attacker attempted to exploit how much one patient could shift a hospital’s minimum deposit value. Even though this metric can be more sensitive, the DP noise was still scaled adequately to prevent the attacker from learning whether any individual record influenced the result.
 
 ## Steps to Run the Code:
 
